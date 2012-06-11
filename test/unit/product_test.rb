@@ -23,17 +23,25 @@ test "image url is valid" do
     assert new_product(name).invalid?, "#{name} shouldn't be valid"
   end
 end
+test "product title must be at least 4 characters" do
+  product = Product.new(title:      'bad',
+                        description:'blah',
+                        price:       5.50,
+                        image_url:   'something.png')
+  assert product.invalid?, "#{product.title} shouldn't be valid - title is too short"
+  assert !product.save
+  assert product.errors[:title].any?
+
+  product.title = 'good'
+  assert product.save
+  assert product.errors[:title].none?
+end
 
 test "product is not valid without a unique title" do
   product = Product.new(title:        products(:ruby).title,
                         description:  'whatever',
                         price:        1,
                         image_url:    'fred.gif')
-  list = Product.all
-  list.each do |p|
-  puts p.title
-  end
-  puts product.title
   assert !product.save
   assert_equal "has already been taken", product.errors[:title].join('; ')
 end
