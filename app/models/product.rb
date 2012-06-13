@@ -18,7 +18,7 @@ class Product < ActiveRecord::Base
 
     # ensures that there are no line_items referenced to the about-to-be-destroyed produce
     def ensure_not_referenced_by_any_line_item
-      if line_item.empty?
+      if line_items.empty?
         return true
       else
         errors.add(:base, 'Line items present')
