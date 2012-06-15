@@ -1,6 +1,7 @@
-%p
-  #notice
-    =notice
+- if notice
+  %p
+    #notice
+      =notice
 
 %p
   %b Title
@@ -17,6 +18,10 @@
 %p
   %b Price
   = @product.price
+
+%p
+  %b Hot?
+  = @product.hottness
 
 = link_to 'Edit', edit_product_path(@product)
 = link_to 'Back', products_path
