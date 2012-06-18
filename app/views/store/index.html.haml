@@ -1,0 +1,14 @@
+- if notice
+  #notice
+    %p=notice
+
+%h1 Corner Bodega
+
+- @products.each do |product|
+  .entry
+    =image_tag(product.image_url)
+    %h3=product.title
+    %p=sanitize(product.description)
+    .product_line
+      %span.price=number_to_currency(product.price)
+      =button_to 'Cart it.', line_items_path(product_it: product)
