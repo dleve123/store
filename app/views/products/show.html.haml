@@ -3,21 +3,22 @@
     #notice
       =notice
 
+=image_tag(@product.image_url, class: 'list_image')
 %p
-  %b Title
+  %b Title:
   = @product.title
 
 %p
-  %b Description
+  %b Description:
   = @product.description
 
-%p
-  %b Image url
-  = @product.image_url
+-# %p
+  %b Image url:
+  =@product.image_url
 
 %p
-  %b Price
-  = @product.price
+  %b Price:
+  = number_to_currency(@product.price, :unit => "$")
 
 %p
   %b Hot?
