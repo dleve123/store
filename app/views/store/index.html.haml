@@ -11,4 +11,4 @@
     %p=sanitize(product.description)
     .product_line
       %span.price=number_to_currency(product.price)
-      =button_to 'Cart it.', line_items_path(product_it: product)
+      =button_to 'Cart it.', line_items_path(product_id: product)
